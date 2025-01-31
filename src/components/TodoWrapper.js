@@ -7,10 +7,10 @@ uuidv4();
 
 
 export const TodoWrapper = () => {
-    const [todos, setTodos] = useState([])
+    const [todos, setTodos] = useState([]);
 
-    const addTodo = todo => {
-        setTodos([...todos, {id: uuidv4(), task: todo, completed: false, isEditing: false}])
+    const addTodo = (todo, deadline) => {
+        setTodos([...todos, {id: uuidv4(), task: todo, completed: false, isEditing: false, isEditingDeadline: false, deadline}])
         console.log(todos)
     }
     const toggleComplete = id => {
@@ -26,6 +26,18 @@ export const TodoWrapper = () => {
         setTodos(todos.map(todo => todo.id === id ? {...todo, task, isEditing: !todo.isEditing}: todo))
     }
 
+    const startEditingDeadline = (id) => {setTodos(todos.map((todo) =>todo.id === id ? { ...todo, isEditingDeadline: true } : todo));
+    }
+    
+      const handleDeadlineChange = (id, newDeadline) => {
+        setTodos(todos.map((todo) => todo.id === id ? { ...todo, deadline: newDeadline } : todo));
+    }
+
+      const saveDeadline = (id) => {setTodos(todos.map((todo) =>todo.id === id ? { ...todo, isEditingDeadline: false } : todo));
+    }
+
+    
+
 
     return (
         <div className='TodoWrapper'>
@@ -35,7 +47,8 @@ export const TodoWrapper = () => {
                 todo.isEditing ? (
                     <EditTodoForm editTodo={editTask} task={todo}/>
                 ) : (
-                <Todo task ={todo} key={index} toggleComplete={toggleComplete} deleteTodo={deleteTodo} editTodo={editTodo}/>
+                <Todo task ={todo} key={index} toggleComplete={toggleComplete} deleteTodo={deleteTodo} editTodo={editTodo} startEditingDeadline={startEditingDeadline}
+                handleDeadlineChange={handleDeadlineChange} saveDeadline={saveDeadline}/>
             )))}
             
         </div>

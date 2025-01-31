@@ -90,3 +90,32 @@ h1 {
   cursor: pointer;
 }
  
+
+.urgent-task {
+  border: 2px solid red;
+}
+
+
+.deadline-container {
+  display: flex;
+  align-items: center;
+}
+
+
+.deadline-text {
+  color: #ffffff;
+  margin-right: 10px;
+}
+
+.urgent-deadline {
+  color: red;
+}
+
+.calendar-icon {
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-left: 10px;
+}
+
+
+
