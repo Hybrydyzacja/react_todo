@@ -26,14 +26,16 @@ export const TodoWrapper = () => {
         setTodos(todos.map(todo => todo.id === id ? {...todo, task, isEditing: !todo.isEditing}: todo))
     }
 
-    const startEditingDeadline = (id) => {setTodos(todos.map((todo) =>todo.id === id ? { ...todo, isEditingDeadline: true } : todo));
+    const startEditingDeadline = (id) => {
+        setTodos(todos.map((todo) =>todo.id === id ? { ...todo, isEditingDeadline: true } : todo));
     }
     
       const handleDeadlineChange = (id, newDeadline) => {
         setTodos(todos.map((todo) => todo.id === id ? { ...todo, deadline: newDeadline } : todo));
     }
 
-      const saveDeadline = (id) => {setTodos(todos.map((todo) =>todo.id === id ? { ...todo, isEditingDeadline: false } : todo));
+      const saveDeadline = (id) => {
+        setTodos(todos.map((todo) =>todo.id === id ? { ...todo, isEditingDeadline: false } : todo));
     }
 
     
