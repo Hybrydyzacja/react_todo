@@ -38,6 +38,10 @@ export const TodoWrapper = () => {
         setTodos(todos.map((todo) =>todo.id === id ? { ...todo, isEditingDeadline: false } : todo));
     }
 
+    const isUrgent = (deadline) => {
+        return deadline && new Date(deadline) - new Date() < 86400000;
+    };
+
     
 
 
@@ -50,7 +54,7 @@ export const TodoWrapper = () => {
                     <EditTodoForm editTodo={editTask} task={todo}/>
                 ) : (
                 <Todo task ={todo} key={index} toggleComplete={toggleComplete} deleteTodo={deleteTodo} editTodo={editTodo} startEditingDeadline={startEditingDeadline}
-                handleDeadlineChange={handleDeadlineChange} saveDeadline={saveDeadline}/>
+                handleDeadlineChange={handleDeadlineChange} saveDeadline={saveDeadline} isUrgent={isUrgent}/>
             )))}
             
         </div>
